@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html  lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+   
+    <head th:replace="/fragments/head :: head" </head>
+    
+    <body>
+        <header >
+            <div class="header">
+                <a href="/inicio"><h2>Biblioteca EGG</h2></a>
+
+                <nav th:replace="/fragments/navbar :: nav" </nav>
+            </div>
+        </header>
+        
+            <div class="container">
+                <h2> Cargue Libros aqui </h2>
+
+                <form class="formulario"  th:action="@{/libro/registro}" method="POST">
+                <div class="container">
+                    <div th:if="${error != null}" class="card text-white bg-danger nb-3 mensajeError" >
+                        <div class="car-body">
+                            <h5 class="card-title"> Error :(</h5>
+                            <p class="card-text" th:text="${error}" > </p>
+                        </div>
+                    </div>
+                    <div th:if="${exito != null}" class="card text-white bg-danger nb-3 mensajeError" >
+                        <div class="car-body">
+                            <h5 class="card-title"> Exito : )</h5>
+                            <p class="card-text" th:text="${exito}"> </p>
+                        </div>
+                    </div>
+                </div>
+                    <div>
+                        <label for="ISBN">ISBN</label><br>
+                        <input id="ISBN" name="isbn" type="text" placeholder="ISBN">
+                    </div>
+                    <div>
+                        <label for="titulo">Titulo</label><br>
+                        <input type="text" name="titulo" placeholder="Titulo">
+                    </div>
+                    <div>
+                        <label for="ejemplares">Ejemplares</label><br>
+                        <input type="text" name="ejemplares" placeholder="numero de ejemplares">
+                    </div>
+                    <div>
+                        <select name="idAutor">
+                            <option> selecciones el autor</option>
+                             <option th:each="autor : ${autores}"
+                                    th:value="${autor.id}"
+                                    th:text="${autor.nombre}"/>
+                        </select>
+                    </div>
+                    <div>
+                        <select name="idEditorial">
+                            <option> selecciones la editorial</option>
+                           <option th:each="editorial : ${editoriales}"
+                                    th:value="${editorial.id}"
+                                    th:text="${editorial.nombre}"/>
+                        </select>
+
+                    </div>
+                    <div>
+                        <button type="submit" class="btn btn-primary"> subir </button>
+                    </div>
+                </form>
+                  <div class="container">
+            <a href="/libro/lista"><button> Listado Libros</button></a>
+        </div>
+            </div>
+        
+
+    </body>
+</html>

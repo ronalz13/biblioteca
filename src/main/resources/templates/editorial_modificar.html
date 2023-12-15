@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html  lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+   
+    <head th:replace="/fragments/head :: head" </head>
+    
+    <body>
+        <header >
+            <div class="header">
+                <a href="/inicio"><h2>Biblioteca EGG</h2></a>
+
+                <nav th:replace="/fragments/navbar :: nav" </nav>
+            </div>
+        </header>
+        
+        <div class="ontainer">
+            
+            <div th:if="${error != null}" class="card text-white bg-danger nb-3 mensajeError" >
+                <div class="car-body">
+                 <h5 class="card-title"> Error :(</h5>
+                    <p class="card-text" th:text="${error}" > </p>
+                </div>
+            
+            </div>
+        
+            <div th:if="${exito != null}" class="card text-white bg-danger nb-3 mensajeError" >
+                <div class="car-body">
+                    <h5 class="card-title"> Exito! :(</h5>
+                     <p class="card-text" th:text="${exito}"> </p>
+                </div>
+            
+            <div class="container">
+                
+                <h2> modifique la Editorial aqui! </h2>
+
+            </div>
+            
+        </div>
+    
+        <div class="container">
+            <form th:action="@{/editorial/modificar/__${editorial.id}__}" method="POST">
+                
+                <div class="form-gorup">
+                <input hidden th:value="${editorial.id}" name="id" >
+                
+             
+                    <input th:value="${editorial.nombre}" type="text" class="form-control" name="nombre" >            
+               </div>
+                    
+                <button type="submit" class="btn btn-primary"> Actualizar </button>
+                
+        </form>
+            
+                
+        </div>
+        
+       
+            
+    </body>
+</html>
+

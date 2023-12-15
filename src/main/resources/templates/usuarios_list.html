@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html  lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+   
+    <head th:replace="/fragments/head :: head" </head>
+    
+    <body>
+        <header >
+            <div class="header">
+                <a href="/inicio"><h2>Biblioteca EGG</h2></a>
+
+                <nav th:replace="/fragments/navbar :: nav" </nav>
+            </div>
+        </header>
+              <div class="container">
+                  
+                  <table>
+                      <thead>
+                          <th scope="col">id </th>
+                          <th scope="col">Usuario</th>
+                          <th scope="col">Foto de Perfil</th>
+                          <th scope="col">Rol</th>
+                          <th scope="col">Cambiar Rol</th>
+                          <th scope="col" sec:authorize="hasRole('ADMIN')"> acciones</th>
+                      </thead>
+                      <tbody th:each="usuario : ${usuarios}">
+                          <tr>
+                              <div class="container">
+                              <th scope="row" th:text="${usuario.id}"></th>
+                              <td th:text="${usuario.nombre}"></td>
+                              <td>
+                               <a>
+                                <img th:if="${usuario.img != null}" class="logo" th:src="@{/imagen/perfil/__${usuario.id}__}" alt="foto">
+                               </a>
+                              </td>
+                               <td th:text="${usuario.rol}"></td>
+                               <td >
+                                   <a th:href="@{/admin/rol/__${usuario.id}__}"> Cambiar</a> 
+                               </td>
+                              <td>
+                                <a  sec:authorize="hasRole('ADMIN')"> modificar</a>
+                              </td>
+                               </div>
+                          </tr>
+                      </tbody>
+                  </table>
+              </div>   
+    </body>
+</html>

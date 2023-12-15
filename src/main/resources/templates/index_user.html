@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html  lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+   
+    <head th:replace="/fragments/head :: head" </head>
+    
+    <body>
+        <header >
+            <div class="header">
+                <a href="/inicio"><h2>Biblioteca EGG</h2></a>
+
+                <nav th:replace="/fragments/navbar :: nav" </nav>
+            </div>
+        </header>
+
+        <div class="container">
+        <h2 class="titulo-index" th:text="'Bienvenido de vuelta '+${session.usuariosesion.nombre}"> </h2>
+        <div>
+            <a>
+                <img class="logo" th:src="@{/imagen/perfil/__${session.usuariosesion.id}__}" alt="foto">
+            </a>
+        </div>
+        </div>
+        <div>
+         <div th:if="${exito != null}" class="exitos-card" >
+            <div class="car-body">
+                <h5 class="card-title"> Exito! :D</h5>
+                <p class="card-text" th:text="${exito}"> </p>
+            </div>
+        </div>
+        
+        
+    </body>
+
+</html>

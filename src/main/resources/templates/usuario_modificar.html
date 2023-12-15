@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html  lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+   
+    <head th:replace="/fragments/head :: head" </head>
+    
+    <body>
+        <header >
+            <div class="header">
+                <a href="/inicio"><h2>Biblioteca EGG</h2></a>
+
+                <nav th:replace="/fragments/navbar :: nav" </nav>
+            </div>
+        </header>
+         <div>
+        
+         <div th:if="${error != null}" class="card text-white bg-danger nb-3 mensajeError" >
+            <div class="car-body">
+                <h5 class="card-title"> Error :(</h5>
+                <p class="card-text" th:text="${error}" > </p>
+            </div>
+            
+        </div>
+            
+            <div class="container">
+                
+                <h2> Perfil </h2>
+                <form class="formulario" th:action="@{/perfil/__${usuario.id}__}" method="POST" enctype="multipart/form-data">
+                
+                    <input hidden th:value="${usuario.id}" name="id" >
+                        
+                <div class="form-gorup">
+                    <label for="nombre"> Nombre</label>
+                    <input type="text" class="form-group" name="nombre" placeholder="nombre de usuario" th:value="${usuario.nombre}">            
+                </div>
+                 <div class="form-gorup">
+                    <label for="email"> E-mail</label>
+                    <input type="email" class="form-group" name="email" placeholder="usuario@egg.com" th:value="${usuario.email}" >            
+                </div>  
+                    <div class="form-gorup">
+                    <label for="archivo"> Imagen</label>
+                    <input type="file" class="form-group" name="archivo" >            
+                </div> 
+                <div class="form-gorup">
+                    <label for="password"> Password</label>
+                    <input type="password" class="form-group" name="password" placeholder="password">            
+                </div>
+                <div class="form-gorup">
+                    <label for="rePassword"> Repite tu Password</label>
+                    <input type="password" class="form-group" name="rePassword" placeholder="repite tu password">            
+                </div>    
+                    
+                                
+                <button type="submit" class="btn btn-primary"> Actualizar </button>
+                
+            </form>
+                    
+            </div>
+            
+            
+      
+    </body>
+</html>
